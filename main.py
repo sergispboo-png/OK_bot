@@ -1,10 +1,12 @@
 from fastapi import FastAPI
-from ok_bot import router as ok_router
 
 app = FastAPI()
 
 @app.get("/")
-def home():
-    return {"status": "server running"}
+def root():
+    return {"status": "OK bot running"}
 
-app.include_router(ok_router)
+@app.post("/webhook")
+async def webhook(data: dict):
+    print(data)
+    return {"ok": True}
