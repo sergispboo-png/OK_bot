@@ -3,10 +3,10 @@ from fastapi import FastAPI
 app = FastAPI()
 
 @app.get("/")
-def root():
-    return {"status": "OK bot running"}
+def home():
+    return {"status": "server running"}
 
 @app.post("/webhook")
 async def webhook(data: dict):
-    print(data)
+    print("Пришло:", data)
     return {"ok": True}
