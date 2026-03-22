@@ -1,13 +1,13 @@
-from fastapi import APIRouter, Request
+from fastapi import FastAPI, Request
 
-router = APIRouter()
+app = FastAPI()
 
-@router.post("/ok/webhook")
-async def ok_webhook(request: Request):
+@app.get("/")
+def home():
+    return {"status": "OK bot running"}
 
+@app.post("/webhook")
+async def webhook(request: Request):
     data = await request.json()
-
-    print("OK EVENT RECEIVED:")
-    print(data)
-
+    print("EVENT FROM OK:", data)
     return {"status": "ok"}
