@@ -1,13 +1,12 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 
 app = FastAPI()
 
 @app.get("/")
-def home():
+def root():
     return {"status": "OK bot running"}
 
 @app.post("/webhook")
-async def webhook(request: Request):
-    data = await request.json()
-    print("EVENT FROM OK:", data)
-    return {"status": "ok"}
+async def webhook(data: dict):
+    print(data)
+    return {"ok": True}
